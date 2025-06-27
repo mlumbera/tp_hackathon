@@ -5,7 +5,7 @@ from voice_input import voice_input
 def ask_llm(prompt):
     api_url = "https://api.openai.com/v1/chat/completions"
     headers = {
-        "Authorization": "Bearer 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",
+        "Authorization": "Bearer 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",
         "Content-Type": "application/json"
     }
     system_prompt = "You are a supportive, expert chef with a focus on Indiana flavors. Respond in simple, step-by-step instructions using large, clear language."
@@ -49,9 +49,3 @@ if __name__ == "__main__":
     print("Text-based prompt:")
     print(ask_llm(prompt))
     print("\n" + "="*50 + "\n")
-
-    # 2. Voice-based prompt (new functionality)
-    print("Voice-based prompt:")
-    print("Speak your recipe request when prompted...")
-    voice_response = voice_to_llm()
-    print(f"LLM Response: {voice_response}")
