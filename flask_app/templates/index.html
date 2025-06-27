@@ -5,8 +5,26 @@
     <title>Utilize What You Have</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html, body {
+        height: 100%;
+        width: 100%;
+        font-size: 18px;
+      }
+      @media (min-width: 576px) {
+        body { font-size: 20px; }
+      }
+      .sr-only { 
+        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; 
+        overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;
+      }
+      input:focus, textarea:focus, button:focus {
+        outline: 2px solid #2563eb !important;
+        outline-offset: 1px;
+      }
+    </style>
 </head>
-<body class="bg-gray-100 min-h-screen">
+<body class="bg-sky-50 min-h-screen min-w-screen flex flex-col">
   <!-- Navigation Bar -->
   <nav class="bg-white shadow-lg">
     <div class="max-w-6xl mx-auto px-4">
@@ -26,28 +44,106 @@
     </div>
   </nav>
 
-  <div class="flex flex-col items-center justify-center min-h-screen">
-    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
-      <h2 class="text-2xl font-semibold mb-6 text-center">Utilize what you have</h2>
-      <form id="ingredients-form" action="/recipe" method="post">
-        <div class="flex mb-4">
-          <input type="text" id="item-input" class="flex-grow border rounded-l px-3 py-2 focus:outline-none" placeholder="Add an ingredient" autofocus>
-          <button type="button" id="add-btn" class="bg-blue-600 text-white px-4 py-2 rounded-r hover:bg-blue-700">Add</button>
+  <main class="flex-grow flex flex-col items-center justify-center">
+    <section class="w-full max-w-lg bg-white rounded-xl shadow-lg p-5 flex flex-col items-center" aria-label="Recipe Suggestion Tool">
+      <h1 class="text-2xl font-bold text-center mb-2 text-blue-800">Plated - Recipe Helper</h1>
+      <p class="text-lg text-center mb-4 text-gray-700">
+        Pick sale items, add your own, or just tell us how you feel.
+      </p>
+      
+      <h2 class="text-lg font-bold mb-2 text-green-800">🛒 On Sale</h2>
+      <div class="flex flex-wrap gap-2 justify-center mb-4" id="sale-ingredients" aria-label="On sale ingredients">
+        <button type="button" class="on-sale bg-yellow-200 hover:bg-yellow-300 border-yellow-600 border text-yellow-900 font-semibold py-1 px-3 rounded-full focus:outline-blue-700" data-ing="Chicken Breast" aria-label="Add Chicken Breast">Chicken Breast</button>
+        <button type="button" class="on-sale bg-yellow-200 hover:bg-yellow-300 border-yellow-600 border text-yellow-900 font-semibold py-1 px-3 rounded-full focus:outline-blue-700" data-ing="Broccoli" aria-label="Add Broccoli">Broccoli</button>
+        <button type="button" class="on-sale bg-yellow-200 hover:bg-yellow-300 border-yellow-600 border text-yellow-900 font-semibold py-1 px-3 rounded-full focus:outline-blue-700" data-ing="Sweet Potatoes" aria-label="Add Sweet Potatoes">Sweet Potatoes</button>
+        <button type="button" class="on-sale bg-yellow-200 hover:bg-yellow-300 border-yellow-600 border text-yellow-900 font-semibold py-1 px-3 rounded-full focus:outline-blue-700" data-ing="Bell Peppers" aria-label="Add Bell Peppers">Bell Peppers</button>
+        <button type="button" class="on-sale bg-yellow-200 hover:bg-yellow-300 border-yellow-600 border text-yellow-900 font-semibold py-1 px-3 rounded-full focus:outline-blue-700" data-ing="Salmon" aria-label="Add Salmon">Salmon</button>
+      </div>
+
+      <form id="ingredients-form" action="/recipe" method="post" class="w-full max-w-md" aria-labelledby="ingredients-heading">
+        <h2 id="ingredients-heading" class="text-md font-semibold mb-2 text-blue-900">My Ingredients</h2>
+        <div class="flex mb-3">
+          <label for="item-input" class="sr-only">Add your own ingredient</label>
+          <input 
+            type="text" id="item-input"
+            class="flex-grow border rounded-l px-3 py-2 focus:outline-none text-lg"
+            placeholder="Type an ingredient"
+            aria-label="Ingredient input"
+            autocomplete="off"
+          />
+          <button 
+            type="button" id="add-btn"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-r font-semibold text-lg focus:outline-blue-700"
+            aria-label="Add ingredient"
+          >
+            Add
+          </button>
         </div>
-        
-        <!-- Dynamic list of ingredients -->
-        <ul id="ingredients-list" class="mb-4"></ul>
-        
-        <!-- Hidden input to submit ingredient data -->
+        <ul id="ingredients-list" class="mb-4 text-base" aria-live="polite"></ul>
         <input type="hidden" name="ingredients" id="ingredients-hidden">
+
+        <!-- Dietary Needs Section -->
+        <fieldset class="mb-4">
+          <legend class="block text-base font-medium mb-2 text-gray-700">Dietary Needs <span class="text-gray-400 text-sm font-normal">(optional)</span></legend>
+          <div class="grid grid-cols-2 gap-2">
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="diet" value="Low Sodium" class="w-5 h-5" />
+              <span>Low Sodium</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="diet" value="Low Sugar" class="w-5 h-5" />
+              <span>Low Sugar</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="diet" value="High Fiber" class="w-5 h-5" />
+              <span>High Fiber</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="diet" value="Dairy Free" class="w-5 h-5" />
+              <span>Dairy Free</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="diet" value="Soft Foods" class="w-5 h-5" />
+              <span>Soft Foods</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="diet" value="Easy to Prepare" class="w-5 h-5" />
+              <span>Easy to Prepare</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="diet" value="Vegetarian" class="w-5 h-5" />
+              <span>Vegetarian</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="diet" value="Gluten Free" class="w-5 h-5" />
+              <span>Gluten Free</span>
+            </label>
+          </div>
+        </fieldset>
+        <!-- END Dietary Needs Section -->
+
+        <label for="notes-input" class="block text-base font-medium mb-1 text-gray-700">How are you feeling? (optional)</label>
+        <textarea 
+          name="notes" id="notes-input" rows="2"
+          class="w-full border rounded px-3 py-2 mb-3 text-lg focus:outline-none"
+          placeholder="e.g. Tired, want something quick, need low-salt, etc."
+          aria-label="Special notes or needs"
+        ></textarea>
         
-        <textarea name="notes" id="notes-input" rows="3" 
-          class="w-full border rounded px-3 py-2 mb-4 focus:outline-none" placeholder="Add any special notes (optional)"></textarea>
-          
-        <button type="submit" class="w-full bg-green-600 text-white font-semibold py-2 px-4 rounded hover:bg-green-700">Get Recipe</button>
+        <button 
+          type="submit"
+          class="w-full bg-green-700 text-white font-bold py-3 px-3 rounded text-xl hover:bg-green-800 mt-1 focus:outline-blue-700"
+          aria-label="Get Recipe"
+        >
+          Get Recipe
+        </button>
       </form>
-    </div>
-  </div>
+    </section>
+  </main>
+
+  <footer class="w-full bg-blue-900 text-white text-center py-2 text-base">
+    Made with ❤️ for everyone!
+  </footer>
   
   <script>
     const itemInput = document.getElementById('item-input');
@@ -55,6 +151,7 @@
     const ingredientsList = document.getElementById('ingredients-list');
     const ingredientsHidden = document.getElementById('ingredients-hidden');
     const form = document.getElementById('ingredients-form');
+    const saleIngButtons = document.querySelectorAll('.on-sale');
     let ingredients = [];
 
     addBtn.onclick = function() {
@@ -67,7 +164,6 @@
       }
     };
 
-    // Allow Enter key in input to also add ingredient
     itemInput.addEventListener('keypress', function(e) {
       if (e.key === "Enter") {
         e.preventDefault();
@@ -75,18 +171,27 @@
       }
     });
 
+    saleIngButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const ing = btn.getAttribute('data-ing').trim();
+        if (ing && !ingredients.includes(ing)) {
+          ingredients.push(ing);
+          updateList();
+        }
+      });
+    });
+
     function updateList() {
       ingredientsList.innerHTML = '';
       ingredients.forEach((ing, idx) => {
         const li = document.createElement('li');
-        li.className = 'flex items-center justify-between bg-gray-200 px-3 py-1 rounded mb-1';
+        li.className = 'flex items-center justify-between bg-gray-200 px-3 py-1 rounded mb-1 text-base';
         li.innerHTML = `
           <span>${ing}</span>
-          <button type="button" class="text-red-500 text-sm" onclick="removeIngredient(${idx})">remove</button>
+          <button type="button" class="text-red-700 border border-red-600 rounded px-2 py-0.5 ms-3 text-base focus:outline-blue-700" onclick="removeIngredient(${idx})" aria-label="Remove ${ing}">Remove</button>
         `;
         ingredientsList.appendChild(li);
       });
-      // Update hidden input with joined list
       ingredientsHidden.value = ingredients.join(',');
     }
 
@@ -95,13 +200,7 @@
       updateList();
     };
 
-    // Prevent submission if no ingredients
     form.onsubmit = function(e) {
-      if (ingredients.length === 0) {
-        alert('Add at least one ingredient!');
-        e.preventDefault();
-        return false;
-      }
       ingredientsHidden.value = ingredients.join(',');
       return true;
     }

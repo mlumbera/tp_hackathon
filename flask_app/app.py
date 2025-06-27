@@ -88,11 +88,15 @@ def index():
 def recipe():
 	ingredient_str = request.form.get('ingredients', '')
 	notes = request.form.get('notes', '')
+	# Get possible multiple dietary needs, as a list
+	diets = request.form.getlist('diet')
 	ingredients = [i.strip() for i in ingredient_str.split(',') if i.strip()]
 	
 	# Generate recipe using LLM
 	if ingredients:
 		prompt = f"Suggest a local Indiana-inspired recipe using {', '.join(ingredients)}"
+		if diets:
+			prompt += f", meeting these dietary needs: {', '.join(diets)}"
 		if notes:
 			prompt += f", with the following notes: {notes}"
 		prompt += ". Provide ingredients and simple, numbered steps."
@@ -101,7 +105,7 @@ def recipe():
 	else:
 		recipe = "Please provide some ingredients to generate a recipe."
 	
-	return render_template('recipe.html', ingredients=ingredients, notes=notes, recipe=recipe)
+	return render_template('recipe.html', ingredients=ingredients, notes=notes, recipe=recipe, diets=diets)
 
 @app.route('/shopping-list', methods=['POST'])
 def shopping_list():
