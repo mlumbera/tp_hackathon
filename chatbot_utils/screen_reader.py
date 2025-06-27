@@ -18,7 +18,6 @@ class ScreenReader:
 			voice_volume: Volume level (0.0 to 1.0)
 		"""
 		self.engine = pyttsx3.init()
-		self.engine.setProperty('voice', "com.apple.speech.synthesis.voice.Albert")
 		self.voice_rate = voice_rate
 		self.voice_volume = voice_volume
 		self.is_speaking = False
@@ -32,17 +31,8 @@ class ScreenReader:
 		self.engine.setProperty('rate', self.voice_rate)
 		self.engine.setProperty('volume', self.voice_volume)
 		
-		# Get available voices and set to a clear one
 		voices = self.engine.getProperty('voices')
-		if voices:
-			# Prefer a clear, natural-sounding voice
-			for voice in voices:
-				if 'en' in voice.id.lower() and ('female' in voice.name.lower() or 'clear' in voice.name.lower()):
-					self.engine.setProperty('voice', voice.id)
-					break
-			else:
-				# Fallback to first available voice
-				self.engine.setProperty('voice', voices[0].id)
+		self.engine.setProperty('voice', 'com.apple.eloquence.en-US.Reed')
 	
 	def speak_response(self, text: str, interrupt: bool = True) -> None:
 		"""

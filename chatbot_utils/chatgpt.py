@@ -39,18 +39,19 @@ def voice_to_llm():
 	else:
 		return "No voice input received. Please try again."
 
-# Usage examples:
+if __name__ == "__main__":
+    # Usage examples:
 
-# 1. Text-based prompt (original functionality)
-ingredients = ['corn', 'tomatoes', 'chicken']
-dietary = 'gluten-free'
-prompt = f"Suggest a local Indiana-inspired recipe using {', '.join(ingredients)}, suitable for {dietary}. Provide ingredients and simple, numbered steps."
-print("Text-based prompt:")
-print(ask_llm(prompt))
-print("\n" + "="*50 + "\n")
+    # 1. Text-based prompt (original functionality)
+    ingredients = ['corn', 'tomatoes', 'chicken']
+    dietary = 'gluten-free'
+    prompt = f"Suggest a local Indiana-inspired recipe using {', '.join(ingredients)}, suitable for {dietary}. Provide ingredients and simple, numbered steps."
+    print("Text-based prompt:")
+    print(ask_llm(prompt))
+    print("\n" + "="*50 + "\n")
 
-# 2. Voice-based prompt (new functionality)
-print("Voice-based prompt:")
-print("Speak your recipe request when prompted...")
-voice_response = voice_to_llm()
-print(f"LLM Response: {voice_response}")
+    # 2. Voice-based prompt (new functionality)
+    print("Voice-based prompt:")
+    print("Speak your recipe request when prompted...")
+    voice_response = voice_to_llm()
+    print(f"LLM Response: {voice_response}")
