@@ -5,7 +5,7 @@ from voice_input import voice_input
 def ask_llm(prompt):
     api_url = "https://api.openai.com/v1/chat/completions"
     headers = {
-        "Authorization": "Bearer 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",
+        "Authorization": "Bearer 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",
         "Content-Type": "application/json"
     }
     system_prompt = "You are a supportive, expert chef with a focus on Indiana flavors. Respond in simple, step-by-step instructions using large, clear language."
