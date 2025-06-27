@@ -2,20 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Recipe Error</title>
+  <title>Plated - Recipe Error</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html, body {
+      height: 100%;
+      width: 100%;
+      font-size: 18px;
+    }
+    @media (min-width: 576px) {
+      body { font-size: 20px; }
+    }
+    .sr-only { 
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; 
+      overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;
+    }
+    input:focus, textarea:focus, button:focus {
+      outline: 2px solid #2563eb !important;
+      outline-offset: 1px;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 min-h-screen">
+<body class="bg-sky-50 min-h-screen min-w-screen flex flex-col">
   <!-- Navigation Bar -->
   <nav class="bg-white shadow-lg">
     <div class="max-w-6xl mx-auto px-4">
       <div class="flex justify-between items-center py-4">
         <div class="flex items-center space-x-8">
-          <a href="/" class="text-xl font-bold text-gray-800 hover:text-blue-600 transition-colors">
-            Recipe Generator
+          <a href="/" class="text-xl font-bold text-blue-600">
+            Plated
           </a>
-          <a href="/" class="text-gray-600 hover:text-blue-600 transition-colors">
+          <a href="/" class="text-blue-600 font-semibold">
             Home
           </a>
           <a href="/shopping-lists" class="text-gray-600 hover:text-blue-600 transition-colors">
@@ -26,8 +44,8 @@
     </div>
   </nav>
 
-  <div class="flex flex-col items-center justify-center min-h-screen">
-    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-2xl">
+  <main class="flex-grow flex flex-col items-center justify-center">
+    <section class="w-full max-w-2xl bg-white rounded-xl shadow-lg p-6" aria-label="Recipe Error">
       <div class="text-center">
         <div class="text-red-500 text-6xl mb-4">⚠️</div>
         <h2 class="text-2xl font-bold mb-4 text-red-600">Recipe Generation Failed</h2>
@@ -49,7 +67,11 @@
           </a>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
+
+  <footer class="w-full bg-blue-900 text-white text-center py-2 text-base">
+    Made with ❤️ for everyone!
+  </footer>
 </body>
 </html> 
