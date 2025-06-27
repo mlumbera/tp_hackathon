@@ -105,7 +105,10 @@ def recipe():
 	else:
 		recipe = "Please provide some ingredients to generate a recipe."
 	
-	return render_template('recipe.html', ingredients=ingredients, notes=notes, recipe=recipe, diets=diets)
+	# Check if the recipe is the error message
+	is_error = recipe == "Sorry, I couldn't find a recipe right now."
+	
+	return render_template('recipe.html', ingredients=ingredients, notes=notes, recipe=recipe, diets=diets, is_error=is_error)
 
 @app.route('/shopping-list', methods=['POST'])
 def shopping_list():
@@ -117,8 +120,9 @@ def shopping_list():
 	user_ingredients = [i.strip() for i in user_ingredients if i.strip()]
 	notes = request.form.get('notes', '')
 	
-	if not recipe_text:
-		return redirect(url_for('shopping_lists'))
+	# Check if recipe is the error message
+	if not recipe_text or recipe_text == "Sorry, I couldn't find a recipe right now.":
+		return redirect(url_for('recipe_error'))
 	
 	# Generate shopping list
 	shopping_items = generate_shopping_list(recipe_text, user_ingredients)
@@ -141,6 +145,13 @@ def shopping_list():
 	save_shopping_lists(shopping_lists)
 	
 	return redirect(url_for('shopping_lists'))
+
+@app.route('/recipe-error')
+def recipe_error():
+	"""
+	Error page when recipe generation fails
+	"""
+	return render_template('recipe_error.html')
 
 @app.route('/shopping-lists')
 def shopping_lists():

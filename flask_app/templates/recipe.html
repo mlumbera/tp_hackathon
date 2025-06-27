@@ -51,26 +51,38 @@
       <div class="bg-gray-50 border rounded-lg p-6">
         <h3 class="font-semibold text-lg mb-4 text-gray-800">Generated Recipe:</h3>
         <div class="prose prose-sm max-w-none">
-          {% set recipe_lines = recipe.split('\n') %}
-          {% for line in recipe_lines %}
-            {% if line.strip() %}
-              {% if line.startswith('**') and line.endswith('**') %}
-                <h4 class="text-xl font-bold text-gray-900 mb-3">{{ line[2:-2] }}</h4>
-              {% elif line.startswith('**') %}
-                <h5 class="text-lg font-semibold text-gray-800 mb-2">{{ line[2:] }}</h5>
-              {% elif line.strip().startswith(('1.', '2.', '3.', '4.', '5.', '6.', '7.', '8.', '9.')) %}
-                <p class="mb-2 text-gray-700">{{ line }}</p>
+          {% if is_error %}
+            <div class="text-center py-8">
+              <div class="text-red-500 text-4xl mb-4">⚠️</div>
+              <h4 class="text-xl font-bold text-red-600 mb-2">Recipe Generation Failed</h4>
+              <p class="text-gray-700 mb-4">{{ recipe }}</p>
+              <p class="text-gray-600 text-sm">
+                No shopping list can be generated. Please try again with different ingredients.
+              </p>
+            </div>
+          {% else %}
+            {% set recipe_lines = recipe.split('\n') %}
+            {% for line in recipe_lines %}
+              {% if line.strip() %}
+                {% if line.startswith('**') and line.endswith('**') %}
+                  <h4 class="text-xl font-bold text-gray-900 mb-3">{{ line[2:-2] }}</h4>
+                {% elif line.startswith('**') %}
+                  <h5 class="text-lg font-semibold text-gray-800 mb-2">{{ line[2:] }}</h5>
+                {% elif line.strip().startswith(('1.', '2.', '3.', '4.', '5.', '6.', '7.', '8.', '9.')) %}
+                  <p class="mb-2 text-gray-700">{{ line }}</p>
+                {% else %}
+                  <p class="mb-2 text-gray-700">{{ line }}</p>
+                {% endif %}
               {% else %}
-                <p class="mb-2 text-gray-700">{{ line }}</p>
+                <br>
               {% endif %}
-            {% else %}
-              <br>
-            {% endif %}
-          {% endfor %}
+            {% endfor %}
+          {% endif %}
         </div>
       </div>
       
       <!-- Shopping List Button -->
+      {% if not is_error %}
       <div class="mt-6">
         <form id="shoppingListForm" action="/shopping-list" method="post" class="mb-4">
           <input type="hidden" name="recipe" value="{{ recipe }}">
@@ -81,6 +93,7 @@
           </button>
         </form>
       </div>
+      {% endif %}
       
       <div class="mt-6 text-center">
         <a href="/" class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">Back to Home</a>
