@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plated - Shopping Lists</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-sky-50 min-h-screen flex flex-col">
+  <nav class="bg-white shadow-lg mb-4">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex items-center space-x-8">
+          <a href="#" class="text-xl font-bold text-blue-600">Plated</a>
+          <a href="index.html" class="text-blue-600 font-semibold">Home</a>
+          <a href="#" class="text-gray-600 hover:text-blue-600">Shopping Lists</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <main class="flex-grow flex flex-col items-center justify-center">
+    <section class="w-full max-w-4xl bg-white rounded-xl shadow-lg p-6" aria-label="Shopping Lists">
+      <h1 class="text-2xl font-bold text-center mb-6 text-blue-800">Shopping Lists</h1>
+      <div class="mb-8">
+        <h2 class="text-xl font-bold mb-4 text-blue-900">Current Shopping List</h2>
+        <div class="mb-4">
+          <h3 class="font-semibold text-lg mb-2 text-gray-700">Recipe: Quick Indiana Chicken & Broccoli</h3>
+          <p class="text-gray-600 text-sm">Created: 2024-06-15 14:05:22</p>
+        </div>
+        <div class="space-y-2">
+          <div class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+            <input type="checkbox" class="rounded border-gray-300 text-green-600" id="cb1">
+            <label for="cb1" class="text-gray-700">Olive oil</label>
+          </div>
+          <div class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+            <input type="checkbox" class="rounded border-gray-300 text-green-600" id="cb2">
+            <label for="cb2" class="text-gray-700">Salt (use reduced)</label>
+          </div>
+          <div class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+            <input type="checkbox" class="rounded border-gray-300 text-green-600" id="cb3">
+            <label for="cb3" class="text-gray-700">Pepper</label>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold mb-6 text-blue-900">Shopping List History</h2>
+        <div class="space-y-4">
+          <div class="border border-gray-200 rounded-lg p-4">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <h3 class="font-semibold text-lg text-gray-800">Simple Veggie Stir Fry</h3>
+                <p class="text-gray-600 text-sm">2024-06-14 18:10:44</p>
+              </div>
+              <span class="text-sm text-gray-500">2 items</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <div class="flex items-center space-x-2">
+                <input type="checkbox" class="rounded border-gray-300 text-green-600" id="hist1">
+                <label for="hist1" class="text-gray-700 text-sm">Soy sauce</label>
+              </div>
+              <div class="flex items-center space-x-2">
+                <input type="checkbox" class="rounded border-gray-300 text-green-600" id="hist2">
+                <label for="hist2" class="text-gray-700 text-sm">Sesame oil</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="text-gray-600 text-center py-8">No more shopping lists yet. Generate a recipe to create lists!</p>
+      </div>
+    </section>
+  </main>
+  <footer class="w-full bg-blue-900 text-white text-center py-2 text-base">
+    Made with ❤️ for everyone!
+  </footer>
+</body>
+</html>

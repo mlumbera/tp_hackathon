@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Plated – Recipe Helper</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-sky-50 min-h-screen flex flex-col">
+  <nav class="bg-white shadow-lg mb-4">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex items-center space-x-8">
+          <a href="#" class="text-xl font-bold text-blue-600">Plated</a>
+          <a href="#" class="text-blue-600 font-semibold">Home</a>
+          <a href="shopping_list.html" class="text-gray-600 hover:text-blue-600 transition-colors">Shopping Lists</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <main class="flex-grow flex flex-col items-center justify-center">
+    <section class="w-full max-w-lg bg-white rounded-xl shadow-lg p-5 flex flex-col items-center" aria-label="Recipe Suggestion Tool">
+      <h1 class="text-2xl font-bold mb-2 text-blue-800 text-center">Plated - Recipe Helper</h1>
+      <p class="text-lg mb-4 text-gray-700 text-center">
+        Pick sale items, add your own, or just tell us how you feel.
+      </p>
+      
+      <h2 class="text-lg font-bold mb-2 text-green-800">🛒 On Sale</h2>
+      <div class="flex flex-wrap gap-2 justify-center mb-4" id="sale-ingredients">
+        <span class="bg-yellow-200 border-yellow-600 border text-yellow-900 font-semibold py-1 px-3 rounded-full">Chicken Breast</span>
+        <span class="bg-yellow-200 border-yellow-600 border text-yellow-900 font-semibold py-1 px-3 rounded-full">Broccoli</span>
+        <span class="bg-yellow-200 border-yellow-600 border text-yellow-900 font-semibold py-1 px-3 rounded-full">Sweet Potatoes</span>
+        <span class="bg-yellow-200 border-yellow-600 border text-yellow-900 font-semibold py-1 px-3 rounded-full">Bell Peppers</span>
+        <span class="bg-yellow-200 border-yellow-600 border text-yellow-900 font-semibold py-1 px-3 rounded-full">Salmon</span>
+      </div>
+
+      <form class="w-full max-w-md">
+        <h2 class="text-md font-semibold mb-2 text-blue-900">My Ingredients</h2>
+        <div class="flex mb-3">
+          <input type="text" class="flex-grow border rounded-l px-3 py-2 text-lg" placeholder="Type an ingredient" aria-label="Ingredient input" autocomplete="off" value="Broccoli" disabled>
+          <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-r font-semibold text-lg" disabled>Add</button>
+        </div>
+        <ul class="mb-4 text-base">
+          <li class="flex items-center justify-between bg-gray-200 px-3 py-1 rounded mb-1 text-base"><span>Chicken Breast</span><button class="text-red-700 border border-red-600 rounded px-2 py-0.5 ms-3 text-base" disabled>Remove</button></li>
+          <li class="flex items-center justify-between bg-gray-200 px-3 py-1 rounded mb-1 text-base"><span>Broccoli</span><button class="text-red-700 border border-red-600 rounded px-2 py-0.5 ms-3 text-base" disabled>Remove</button></li>
+        </ul>
+        <fieldset class="mb-4">
+          <legend class="block text-base font-medium mb-2 text-gray-700">Dietary Needs <span class="text-gray-400 text-sm font-normal">(optional)</span></legend>
+          <div class="grid grid-cols-2 gap-2">
+            <label class="flex items-center gap-2"><input type="checkbox" checked disabled class="w-5 h-5" />Low Sodium</label>
+            <label class="flex items-center gap-2"><input type="checkbox" disabled class="w-5 h-5" />Low Sugar</label>
+            <label class="flex items-center gap-2"><input type="checkbox" disabled class="w-5 h-5" />High Fiber</label>
+            <label class="flex items-center gap-2"><input type="checkbox" checked disabled class="w-5 h-5" />Dairy Free</label>
+            <label class="flex items-center gap-2"><input type="checkbox" disabled class="w-5 h-5" />Soft Foods</label>
+            <label class="flex items-center gap-2"><input type="checkbox" disabled class="w-5 h-5" />Easy to Prepare</label>
+            <label class="flex items-center gap-2"><input type="checkbox" disabled class="w-5 h-5" />Vegetarian</label>
+            <label class="flex items-center gap-2"><input type="checkbox" disabled class="w-5 h-5" />Gluten Free</label>
+          </div>
+        </fieldset>
+        <label for="notes-input" class="block text-base font-medium mb-1 text-gray-700">How are you feeling? (optional)</label>
+        <textarea id="notes-input" rows="2" class="w-full border rounded px-3 py-2 mb-3 text-lg" placeholder="e.g. Tired, want something quick, need low-salt, etc." disabled>I want something quick and easy.</textarea>
+        <button type="button" class="w-full bg-green-700 text-white font-bold py-3 px-3 rounded text-xl mt-1" disabled>Get Recipe</button>
+      </form>
+    </section>
+  </main>
+  <footer class="w-full bg-blue-900 text-white text-center py-2 text-base">
+    Made with ❤️ for everyone!
+  </footer>
+</body>
+</html>

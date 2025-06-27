@@ -1,0 +1,41 @@
+flowchart TD
+    %% Entities
+    DB[(Client Notes Database)]
+    Sales[Salespeople]
+    Birst[Birst Reporting Tool]
+    Managers[Managers]
+    AI[AI Agent]
+    
+    %% Current Process
+    Sales -->|Record client interactions| DB
+    DB -->|Pull call notes| Birst
+    Birst -->|Email raw notes| Managers
+    
+    %% Future State
+    Birst -.->|CC: Email with notes| AI
+    AI -->|Process notes| AIProcess
+    
+    subgraph AIProcess[AI Processing]
+        Summary[Generate Summary]
+        Issues[Extract Issues]
+        Actions[Extract Action Items]
+    end
+    
+    AIProcess -->|Send processed notes email| Managers
+    Managers -->|Compare original vs AI processed emails| Verification
+    
+    subgraph Verification[Human-in-the-Loop Verification]
+        Review[Review both emails]
+        Validate[Validate AI output]
+        Feedback[Provide feedback]
+    end
+    
+    classDef current fill:#f9f9f9,stroke:#333,stroke-width:1px
+    classDef future fill:#e6f7ff,stroke:#0066cc,stroke-width:1px
+    classDef aiprocess fill:#e6ffe6,stroke:#009900,stroke-width:1px
+    classDef verification fill:#fff0e6,stroke:#ff8000,stroke-width:1px
+    
+    class DB,Sales,Birst,Managers current
+    class AI future
+    class AIProcess,Summary,Issues,Actions aiprocess
+    class Verification,Review,Validate,Feedback verification

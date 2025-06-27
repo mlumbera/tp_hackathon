@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Plated – System Architecture Diagram</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    body {
+      background: #f5f5f5;
+      color: #222;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 2vw;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 10px;
+      padding: 1.5em;
+      box-shadow: 0 3px 18px #8882;
+    }
+    h1 { text-align: center; font-size: 2em; color: #0066cc; }
+    .mermaid { margin-top: 2em; }
+    .legend {
+      margin-top: 2em; padding: 1em; background: #faf9f7; border-radius: 6px;
+    }
+    .legend-title { font-weight: bold; }
+    .legend-item { display: flex; align-items: center; margin-bottom: 0.75em; }
+    .legend-color {
+      display: inline-block; width: 25px; height: 25px;
+      margin-right: 12px; border: 2px solid #aaa; border-radius: 4px;
+    }
+    .browser    { background: #e6f7ff; border-color: #0066cc;}
+    .backend    { background: #fffde6; border-color: #d1aa00;}
+    .llm        { background: #e6ffe6; border-color: #009900;}
+    .storage    { background: #e3e3e3; border-color: #999;}
+    .helper     { background: #fbeaea; border-color: #c33;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Plated – System Architecture Diagram</h1>
+    <pre class="mermaid">
+flowchart TD
+    User[User]
+    IndexForm[Index Form]
+    RecipePage[Recipe Page]
+    ShopListPage[Shopping Lists Page]
+    FlaskApp[Flask app.py]
+    GPTUtils[chatgpt.py ask_llm]
+    LLM[(LLM API)]
+    Storage[shopping_lists.json]
+
+    User --> IndexForm
+    IndexForm --> FlaskApp
+    FlaskApp --> GPTUtils
+    GPTUtils --> LLM
+    LLM --> GPTUtils
+    GPTUtils --> FlaskApp
+    FlaskApp --> RecipePage
+    RecipePage --> User
+
+    RecipePage -.-> FlaskApp
+    FlaskApp --> GPTUtils
+    GPTUtils --> FlaskApp
+    FlaskApp --> Storage
+    FlaskApp --> ShopListPage
+    ShopListPage --> User
+
+    ShopListPage -.-> FlaskApp
+    FlaskApp --> Storage
+    FlaskApp --> ShopListPage
+
+    %% Color coding with classDefs
+    classDef browser fill:#e6f7ff,stroke:#0066cc,stroke-width:2px;
+    classDef backend fill:#fffde6,stroke:#d1aa00,stroke-width:2px;
+    classDef llm fill:#e6ffe6,stroke:#009900,stroke-width:2px;
+    classDef storage fill:#e3e3e3,stroke:#999,stroke-width:2px;
+    classDef helper fill:#fbeaea,stroke:#c33,stroke-width:2px;
+
+    class User,IndexForm,RecipePage,ShopListPage browser;
+    class FlaskApp backend;
+    class GPTUtils helper;
+    class LLM llm;
+    class Storage storage;
+    </pre>
+
+    <div class="legend">
+      <div class="legend-title">Legend</div>
+      <div class="legend-item"><span class="legend-color browser"></span> Browser/UI (HTML Templates)</div>
+      <div class="legend-item"><span class="legend-color backend"></span> Flask backend / business logic</div>
+      <div class="legend-item"><span class="legend-color helper"></span> LLM Helper Python module</div>
+      <div class="legend-item"><span class="legend-color llm"></span> GPT/LLM Cloud Service</div>
+      <div class="legend-item"><span class="legend-color storage"></span> JSON Storage on Disk</div>
+    </div>
+  </div>
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</body>
+</html>
