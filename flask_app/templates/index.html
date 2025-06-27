@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Utilize What You Have</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
+  <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+    <h2 class="text-2xl font-semibold mb-6 text-center">Utilize what you have</h2>
+    <form id="ingredients-form" action="/recipe" method="post">
+      <div class="flex mb-4">
+        <input type="text" id="item-input" class="flex-grow border rounded-l px-3 py-2 focus:outline-none" placeholder="Add an ingredient" autofocus>
+        <button type="button" id="add-btn" class="bg-blue-600 text-white px-4 py-2 rounded-r hover:bg-blue-700">Add</button>
+      </div>
+      
+      <!-- Dynamic list of ingredients -->
+      <ul id="ingredients-list" class="mb-4"></ul>
+      
+      <!-- Hidden input to submit ingredient data -->
+      <input type="hidden" name="ingredients" id="ingredients-hidden">
+      
+      <textarea name="notes" id="notes-input" rows="3" 
+        class="w-full border rounded px-3 py-2 mb-4 focus:outline-none" placeholder="Add any special notes (optional)"></textarea>
+        
+      <button type="submit" class="w-full bg-green-600 text-white font-semibold py-2 px-4 rounded hover:bg-green-700">Get Recipe</button>
+    </form>
+  </div>
+  <script>
+    const itemInput = document.getElementById('item-input');
+    const addBtn = document.getElementById('add-btn');
+    const ingredientsList = document.getElementById('ingredients-list');
+    const ingredientsHidden = document.getElementById('ingredients-hidden');
+    const form = document.getElementById('ingredients-form');
+    let ingredients = [];
+
+    addBtn.onclick = function() {
+      const value = itemInput.value.trim();
+      if (value && !ingredients.includes(value)) {
+        ingredients.push(value);
+        updateList();
+        itemInput.value = '';
+        itemInput.focus();
+      }
+    };
+
+    // Allow Enter key in input to also add ingredient
+    itemInput.addEventListener('keypress', function(e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        addBtn.click();
+      }
+    });
+
+    function updateList() {
+      ingredientsList.innerHTML = '';
+      ingredients.forEach((ing, idx) => {
+        const li = document.createElement('li');
+        li.className = 'flex items-center justify-between bg-gray-200 px-3 py-1 rounded mb-1';
+        li.innerHTML = `
+          <span>${ing}</span>
+          <button type="button" class="text-red-500 text-sm" onclick="removeIngredient(${idx})">remove</button>
+        `;
+        ingredientsList.appendChild(li);
+      });
+      // Update hidden input with joined list
+      ingredientsHidden.value = ingredients.join(',');
+    }
+
+    window.removeIngredient = function(idx) {
+      ingredients.splice(idx, 1);
+      updateList();
+    };
+
+    // Prevent submission if no ingredients
+    form.onsubmit = function(e) {
+      if (ingredients.length === 0) {
+        alert('Add at least one ingredient!');
+        e.preventDefault();
+        return false;
+      }
+      ingredientsHidden.value = ingredients.join(',');
+      return true;
+    }
+  </script>
+</body>
+</html>
