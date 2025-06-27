@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Shopping Lists</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <!-- Navigation Bar -->
+  <nav class="bg-white shadow-lg">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex items-center space-x-8">
+          <a href="/" class="text-xl font-bold text-gray-800 hover:text-blue-600 transition-colors">
+            Recipe Generator
+          </a>
+          <a href="/" class="text-gray-600 hover:text-blue-600 transition-colors">
+            Home
+          </a>
+          <a href="/shopping-lists" class="text-blue-600 font-semibold">
+            Shopping Lists
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-gray-800 mb-8">Shopping Lists</h1>
+    
+    <!-- Current Shopping List -->
+    {% if current_list %}
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+      <h2 class="text-2xl font-bold mb-4 text-gray-800">Current Shopping List</h2>
+      <div class="mb-4">
+        <h3 class="font-semibold text-lg mb-2 text-gray-700">Recipe: {{ current_list.recipe_name }}</h3>
+        <p class="text-gray-600 text-sm">Created: {{ current_list.created_at }}</p>
+      </div>
+      
+      {% if current_list.shopping_items %}
+      <div class="space-y-2">
+        {% for item in current_list.shopping_items %}
+        <div class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+          <input type="checkbox" class="rounded border-gray-300 text-green-600 focus:ring-green-500">
+          <span class="text-gray-700">{{ item }}</span>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="text-gray-600">Great! You have all the ingredients you need.</p>
+      {% endif %}
+    </div>
+    {% endif %}
+    
+    <!-- Shopping List History -->
+    <div class="bg-white rounded-lg shadow-lg p-6">
+      <h2 class="text-2xl font-bold mb-6 text-gray-800">Shopping List History</h2>
+      
+      {% if shopping_lists %}
+      <div class="space-y-4">
+        {% for list in shopping_lists %}
+        <div class="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition-colors">
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <h3 class="font-semibold text-lg text-gray-800">{{ list.recipe_name }}</h3>
+              <p class="text-gray-600 text-sm">{{ list.created_at }}</p>
+            </div>
+            <span class="text-sm text-gray-500">{{ list.shopping_items|length }} items</span>
+          </div>
+          
+          {% if list.shopping_items %}
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+            {% for item in list.shopping_items %}
+            <div class="flex items-center space-x-2">
+              <input type="checkbox" class="rounded border-gray-300 text-green-600 focus:ring-green-500">
+              <span class="text-gray-700 text-sm">{{ item }}</span>
+            </div>
+            {% endfor %}
+          </div>
+          {% else %}
+          <p class="text-gray-600 text-sm">No additional ingredients needed</p>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="text-gray-600 text-center py-8">No shopping lists yet. Generate a recipe to create your first shopping list!</p>
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html> 

@@ -6,27 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
-  <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
-    <h2 class="text-2xl font-semibold mb-6 text-center">Utilize what you have</h2>
-    <form id="ingredients-form" action="/recipe" method="post">
-      <div class="flex mb-4">
-        <input type="text" id="item-input" class="flex-grow border rounded-l px-3 py-2 focus:outline-none" placeholder="Add an ingredient" autofocus>
-        <button type="button" id="add-btn" class="bg-blue-600 text-white px-4 py-2 rounded-r hover:bg-blue-700">Add</button>
+<body class="bg-gray-100 min-h-screen">
+  <!-- Navigation Bar -->
+  <nav class="bg-white shadow-lg">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex items-center space-x-8">
+          <a href="/" class="text-xl font-bold text-blue-600">
+            Recipe Generator
+          </a>
+          <a href="/" class="text-blue-600 font-semibold">
+            Home
+          </a>
+          <a href="/shopping-lists" class="text-gray-600 hover:text-blue-600 transition-colors">
+            Shopping Lists
+          </a>
+        </div>
       </div>
-      
-      <!-- Dynamic list of ingredients -->
-      <ul id="ingredients-list" class="mb-4"></ul>
-      
-      <!-- Hidden input to submit ingredient data -->
-      <input type="hidden" name="ingredients" id="ingredients-hidden">
-      
-      <textarea name="notes" id="notes-input" rows="3" 
-        class="w-full border rounded px-3 py-2 mb-4 focus:outline-none" placeholder="Add any special notes (optional)"></textarea>
+    </div>
+  </nav>
+
+  <div class="flex flex-col items-center justify-center min-h-screen">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+      <h2 class="text-2xl font-semibold mb-6 text-center">Utilize what you have</h2>
+      <form id="ingredients-form" action="/recipe" method="post">
+        <div class="flex mb-4">
+          <input type="text" id="item-input" class="flex-grow border rounded-l px-3 py-2 focus:outline-none" placeholder="Add an ingredient" autofocus>
+          <button type="button" id="add-btn" class="bg-blue-600 text-white px-4 py-2 rounded-r hover:bg-blue-700">Add</button>
+        </div>
         
-      <button type="submit" class="w-full bg-green-600 text-white font-semibold py-2 px-4 rounded hover:bg-green-700">Get Recipe</button>
-    </form>
+        <!-- Dynamic list of ingredients -->
+        <ul id="ingredients-list" class="mb-4"></ul>
+        
+        <!-- Hidden input to submit ingredient data -->
+        <input type="hidden" name="ingredients" id="ingredients-hidden">
+        
+        <textarea name="notes" id="notes-input" rows="3" 
+          class="w-full border rounded px-3 py-2 mb-4 focus:outline-none" placeholder="Add any special notes (optional)"></textarea>
+          
+        <button type="submit" class="w-full bg-green-600 text-white font-semibold py-2 px-4 rounded hover:bg-green-700">Get Recipe</button>
+      </form>
+    </div>
   </div>
+  
   <script>
     const itemInput = document.getElementById('item-input');
     const addBtn = document.getElementById('add-btn');

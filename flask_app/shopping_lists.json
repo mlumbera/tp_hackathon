@@ -1,0 +1,44 @@
+[
+  {
+    "id": "20250627_123911",
+    "recipe_name": "Hoosier Lemon Sugar Cookies",
+    "recipe_text": "Recipe: Hoosier Lemon Sugar Cookies\r\n\r\nIngredients:\r\n1. 1 cup unsalted butter, softened\r\n2. 1 cup granulated sugar\r\n3. Zest of 1 lemon\r\n4. 2 eggs\r\n5. 1 teaspoon vanilla extract\r\n6. 2 \u00bd cups all-purpose flour\r\n7. 1 teaspoon baking powder\r\n8. \u00bd teaspoon salt\r\n9. Juice of \u00bd lemon\r\n10. Powdered sugar for dusting\r\n\r\nSteps:\r\n1. Preheat your oven to 350\u00b0F (180\u00b0C) and line a baking sheet with parchment paper.\r\n2. In a large bowl, cream together the butter and granulated sugar until light and fluffy.\r\n3. Add the lemon zest, eggs, and vanilla extract. Mix until well combined.\r\n4. In a separate bowl, whisk together the flour, baking powder, and salt.\r\n5. Gradually add the dry ingredients to the wet ingredients, mixing until a dough forms.\r\n6. Add the lemon juice and mix until incorporated.\r\n7. Using a cookie scoop or spoon, scoop out dough and roll into balls. Place them on the prepared baking sheet.\r\n8. Flatten each ball slightly with the bottom of a glass or your fingers.\r\n9. Bake in the preheated oven for 10-12 minutes or until the edges are lightly golden.\r\n10. Remove from the oven and let the cookies cool on the baking sheet for a few minutes before transferring to a wire rack to cool completely.\r\n11. Once cooled, dust the cookies with powdered sugar.\r\n12. Enjoy your delicious Hoosier Lemon Sugar Cookies with a glass of cold milk or a cup of coffee.",
+    "user_ingredients": [
+      "lemon"
+    ],
+    "notes": "make something new",
+    "shopping_items": [
+      "1 cup unsalted butter",
+      "softened",
+      "1 cup granulated sugar",
+      "2 eggs",
+      "1 teaspoon vanilla extract",
+      "2 \u00bd cups all-purpose flour",
+      "1 teaspoon baking powder",
+      "\u00bd teaspoon salt",
+      "Powdered sugar for dusting"
+    ],
+    "created_at": "2025-06-27 12:39:11"
+  },
+  {
+    "id": "20250627_123833",
+    "recipe_name": "Lemon Basil Indiana Shrimp Skewers",
+    "recipe_text": "**Lemon Basil Indiana Shrimp Skewers**\r\n\r\n**Ingredients:**\r\n1. 1 lb large Indiana shrimp, peeled and deveined\r\n2. 1/4 cup lemon juice\r\n3. Zest of 1 lemon\r\n4. 1/4 cup fresh basil leaves, chopped\r\n5. 2 cloves garlic, minced\r\n6. Salt and pepper to taste\r\n7. Wooden skewers, soaked in water for 30 minutes\r\n\r\n**Instructions:**\r\n1. In a bowl, mix together lemon juice, lemon zest, basil, garlic, salt, and pepper to create a marinade.\r\n2. Add the peeled shrimp to the marinade and toss to coat. Let the shrimp marinate in the refrigerator for 30 minutes.\r\n3. Preheat your grill or grill pan over medium-high heat.\r\n4. Thread the marinated shrimp onto the soaked skewers.\r\n5. Place the shrimp skewers on the grill and cook for 2-3 minutes per side, or until the shrimp are pink and cooked through.\r\n6. Serve the Lemon Basil Indiana Shrimp Skewers hot with a squeeze of fresh lemon juice and garnish with additional basil leaves.\r\n7. Enjoy your exotic Indiana-inspired dish!",
+    "user_ingredients": [
+      "lemon",
+      "basil"
+    ],
+    "notes": "Make something exotic",
+    "shopping_items": [
+      "1 lb large Indiana shrimp",
+      "peeled and deveined",
+      "chopped",
+      "2 cloves garlic",
+      "minced",
+      "Salt",
+      "Pepper",
+      "Wooden skewers"
+    ],
+    "created_at": "2025-06-27 12:38:33"
+  }
+]
