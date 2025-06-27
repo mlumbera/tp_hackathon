@@ -1,16 +1,29 @@
-# Voice-to-Text LLM Integration
+# Plated - Recipe Helper App
 
-A Python application that combines voice-to-text functionality with LLM (Large Language Model) integration for recipe suggestions with Indiana flavors.
+A web application that helps you create delicious recipes using ingredients you already have, with AI-powered recipe suggestions and automatic shopping list generation. Perfect for reducing food waste and making the most of what's in your kitchen!
+
+## What This App Does
+
+🍳 **Smart Recipe Generation**: Enter the ingredients you have, and the app suggests Indiana-inspired recipes tailored to your dietary needs and preferences.
+
+🛒 **Shopping List Creation**: After getting a recipe, the app automatically generates a shopping list of ingredients you need to buy, comparing against what you already have.
+
+🎯 **Dietary Accommodations**: Support for various dietary needs including gluten-free, vegetarian, low-sodium, dairy-free, and more.
+
+💭 **Personal Touch**: Add notes about how you're feeling or special requirements to get more personalized recipe suggestions.
+
+📱 **User-Friendly Interface**: Clean, accessible web interface designed for easy use on any device.
 
 ## Features
 
-- 🎤 **Voice Input**: Convert speech to text using microphone input
-- 🤖 **LLM Integration**: Send voice/text prompts to OpenAI's GPT-3.5-turbo
-- 🍳 **Recipe Focus**: Specialized for Indiana-inspired recipes
-- 📝 **Text Input**: Traditional text-based prompting also available
-- 🔧 **Easy Integration**: Modular design for easy app integration
+- **Ingredient Input**: Add your own ingredients or select from suggested sale items
+- **AI-Powered Recipes**: Uses OpenAI's GPT-3.5-turbo to generate creative, Indiana-inspired recipes
+- **Shopping List Management**: Automatically creates and saves shopping lists
+- **Recipe History**: View your previous recipes and shopping lists
+- **Dietary Filters**: Choose from multiple dietary restrictions and preferences
+- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
 
-## Setup
+## Setup Instructions
 
 ### 1. Install Dependencies
 
@@ -18,82 +31,70 @@ A Python application that combines voice-to-text functionality with LLM (Large L
 pip install -r requirements.txt
 ```
 
-### 2. Audio Setup (macOS)
+### 2. Set Up Your OpenAI API Key
 
-For PyAudio on macOS, you might need to install portaudio first:
+**Important**: You need to provide your own OpenAI API key to use this application.
 
-```bash
-brew install portaudio
-pip install PyAudio
-```
-
-### 3. API Key
-
-The application uses an OpenAI API key. Make sure your API key is valid and has sufficient credits.
-
-## Usage
-
-### Quick Start
-
-Run the interactive demo:
-
-```bash
-python voice_demo.py
-```
-
-### Programmatic Usage
+1. Get an API key from [OpenAI's website](https://platform.openai.com/api-keys)
+2. Open `chatbot_utils/chatgpt.py` in a text editor
+3. Find line 7 and replace the placeholder with your actual API key:
 
 ```python
-from chatgpt import voice_to_llm, ask_llm
-
-# Voice input
-response = voice_to_llm()
-
-# Text input
-response = ask_llm("Suggest a recipe using corn and tomatoes")
+"Authorization": "Bearer YOUR_OPENAI_API_KEY_HERE",
 ```
 
-### Direct Script Execution
+## Running the Application
+
+### Start the Web App
 
 ```bash
-python chatgpt.py
+cd flask_app
+python app.py
 ```
 
-## Functions
+The application will be available at `http://localhost:8080`
 
-### `voice_input()`
-- Captures audio from microphone
-- Converts speech to text using Google's speech recognition
-- Returns transcribed text or None if failed
+### Using the App
 
-### `voice_to_llm()`
-- Combines voice input with LLM query
-- Returns LLM response based on voice prompt
+1. **Add Ingredients**: Type in ingredients you have or click on suggested sale items
+2. **Set Dietary Needs**: Check any dietary restrictions that apply
+3. **Add Notes**: Tell the app how you're feeling or any special requirements
+4. **Get Recipe**: Click "Get Recipe" to receive an AI-generated recipe
+5. **Create Shopping List**: After reviewing the recipe, create a shopping list of missing ingredients
+6. **View History**: Access your previous recipes and shopping lists from the navigation
 
-### `ask_llm(prompt)`
-- Sends text prompt to OpenAI's GPT-3.5-turbo
-- Returns recipe suggestions with Indiana focus
+## Project Structure
 
-## Integration
+```
+tp_hackathon/
+├── flask_app/                 # Main web application
+│   ├── app.py                # Flask server and routes
+│   ├── templates/            # HTML templates
+│   └── shopping_lists.json   # Shopping list storage
+├── chatbot_utils/            # AI integration utilities
+│   ├── chatgpt.py           # OpenAI API integration
+│   └── requirements.txt     # Python dependencies
+└── README.md                # This file
+```
 
-To integrate into your app:
+## API Key Requirements
 
-1. Import the functions: `from chatgpt import voice_to_llm, ask_llm`
-2. Call `voice_to_llm()` for voice input
-3. Call `ask_llm(prompt)` for text input
-4. Handle responses as needed
+- **OpenAI API Key**: Required for recipe generation
+- **Credits**: Ensure your OpenAI account has sufficient credits
+- **Rate Limits**: Be aware of OpenAI's rate limits for API calls
 
-## Error Handling
+## Troubleshooting
 
-The voice functionality includes comprehensive error handling for:
-- No speech detected
-- Unrecognizable audio
-- Network/API errors
-- Timeout scenarios
+- **API Key Issues**: Make sure your OpenAI API key is valid and has credits
+- **Recipe Generation Fails**: Check your internet connection and API key status
 
 ## Requirements
 
 - Python 3.7+
-- Microphone access
-- Internet connection (for speech recognition and LLM API)
-- OpenAI API key
+- OpenAI API key with credits
+- Internet connection
+- Web browser (Chrome, Firefox, Safari, Edge)
+
+## License
+
+This project is created for educational and demonstration purposes.
