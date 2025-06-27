@@ -1,0 +1,81 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Flask instance folder and config
+instance/
+.env
+*.env
+.env.*
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+.Python
+
+# macOS system files
+.DS_Store
+
+# VSCode settings
+.vscode/
+
+# PyCharm settings
+.idea/
+
+# Test/build/output files
+.build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+htmlcov/
+.coverage
+.tox/
+.nox/
+.gradle/
+
+# Node.js for frontend builds (if any)
+node_modules/
+
+# Log files
+*.log
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# mypy
+.mypy_cache/
+.dmypy.json
+.pyre/
+
+# Coverage reports
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Others
+*.sqlite3
+db.sqlite3
+
+# If you use pytest
+.pytest_cache/
+
+# If you use pipenv or poetry
+Pipfile.lock
+poetry.lock
